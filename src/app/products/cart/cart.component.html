@@ -1,0 +1,89 @@
+<!-- empty cart -->
+    <div class="p2" *ngIf="cartitems.length==0">
+<div class="container border border-primary m-5 p-5">
+    <div class="row text-center">
+        <div class="col">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk3JWzobCOowT4pj-l-R_j9aZ7XAW4_rI9vQ&usqp=CAU" width="200px" alt="">
+            <h3 class="mt-3">Your cart is empty</h3>
+            <button routerLink="/" class="btn btn-primary mt-2">Shop Now</button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+<!-- cart with content -->
+<div class="container" *ngIf="cartitems.length!=0">
+    <div class="row">
+        <div class="col">
+            <table class="table border border-dark">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of cartitems, let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{product.title}}</td>
+                        <td><img [src]="product.image" width="100px" alt=""></td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.price}}</td>
+                        <td><i (click)="removecart(product)" class="fa fa-trash text-danger"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="float:right;" class="mb-3">
+                <button (click)="removeall()" class="btn btn-danger">Empty Cart</button> &nbsp;
+                <button class="btn btn-warning" routerLink="">View More</button> &nbsp; 
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Check Out</button> &nbsp;
+                <b>Grand Total:{{grand}}</b>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Check Out Page</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <h1>Delivery Address</h1>
+            <form action="">
+                <input type="text" placeholder="Enter your name" class="form-control" mb-2>
+                <input type="text" placeholder="House No" class="form-control mb-2" >
+                <input type="text" placeholder="Pincode" class="form-control mb-2" >
+                <input type="text" placeholder="State" class="form-control mb-2" >
+                <input type="text" placeholder="Country" class="form-control mb-2" >
+                <input type="text" placeholder="Contact no" class="form-control mb-2" >
+            </form>
+        </div>
+        <h3>Discounts</h3>
+        <div [ngSwitch]="grand">
+            <img (click)="discount5per()" *ngSwitchCase="5" width="100px" src="https://www.shutterstock.com/image-vector/5-coupon-promotion-sale-website-260nw-2042047343.jpg" alt="">
+            <img (click)="discount10per()" *ngSwitchCase="10" width="100px" src="https://www.cyberlink.com/stat/edms/english/2020/Q1/Coupon/images/coupon.jpg" alt="">
+            <img (click)="discount50per()" *ngSwitchCase="50" width="100px" src="https://thumbs.dreamstime.com/z/set-template-coupon-gift-element-graphics-design-voucher-promo-code-shopping-marketing-food-drink-business-vector-175072303.jpg" alt="">
+            <img (click)="discount5per()" *ngSwitchDefault="5" width="100px" src="https://media.istockphoto.com/id/1136155337/vector/promo-code-coupon-code-flat-vector-set-design-illustration-on-white-background.jpg?s=612x612&w=0&k=20&c=sM95EWp2rPqPfp0pGxKi4Jkjgz-0buvGtSSZkNQYIao=" alt="">
+        </div>
+        <div>
+            <b>Your Grand Total:{{updatedgrand}}</b>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="proceed()">Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

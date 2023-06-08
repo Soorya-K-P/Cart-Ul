@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@700&family=Lato:wght@300;400&family=Montserrat:ital,wght@0,600;0,700;1,100;1,700&family=Poppins:wght@700&family=Roboto+Condensed:wght@300&family=Roboto:wght@300&family=Sevillana&display=swap');
+body{
+    font-family: 'Titillium Web', sans-serif;
+    margin-top: 120px;
+}
+.card-img-top{
+    width: 200px;
+    height: 300px;
+    transition: 0.5s;
+}
+.card-img-top:hover{
+    scale: 1.25;
+    transform: scale(1.25);
+    transition: 0.5s;
+}
+
+.navbar{
+    position: fixed;
+    width:100%;
+    top: 0;
+    z-index: 1;
+}
+/* .py-5{
+    margin: 50px;
+} */
